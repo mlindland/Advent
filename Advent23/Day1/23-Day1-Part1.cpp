@@ -5,8 +5,8 @@ std::string getlinesum(std::string);
 
 int main(int argc, char const *argv[])
 {
-    std::ifstream file;
     int total = 0;
+    std::ifstream file;
     std::string line;
 
     file.open("input.txt");
