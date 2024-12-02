@@ -56,7 +56,7 @@ int main()
                 iteration_count++;
             }
         }
-        similarity += iteration_count * iteration_numner;            
+        similarity += iteration_count * iteration_numner;
     }
     std::cout << "Total Similarity: " << similarity << std::endl;
 
