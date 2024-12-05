@@ -8,7 +8,7 @@
 int main(int argc, char const *argv[])
 {
     std::ifstream file;
-    file.open("input.txt");
+    file.open("debug.txt");
     
     if (!file)
     {
@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
         std::string token;
         
         int current, previous = -1;
-        int ascending = 0;
+        int direction = 0;
         bool safe = true;
         bool dampener = true;
         
@@ -45,7 +45,7 @@ int main(int argc, char const *argv[])
                 if (dampener)
                 {
                     dampener = false;
-                    previous = current;
+                    //previous = current;
                     continue;
                 }
                 else
@@ -55,25 +55,26 @@ int main(int argc, char const *argv[])
                 }
             }
 
-            if (ascending == 0)
+            if (direction == 0)
             {
                 if (current < previous)
                 {
-                    ascending = -1;
+                    direction = -1;
                 }
                 else
                 {
-                    ascending = 1;
+                    direction = 1;
                 }
             }
-            if ((ascending == -1 && current > previous) ||
-                (ascending == 1 && current < previous))
+            if ((direction == -1 && current > previous) ||
+                (direction == 1 && current < previous))
             {
                 // Need to determine which (previous or current) is the problem level and the increment it.
                 if (dampener)
                 {
                     dampener = false;
-                    previous = current;
+                    direction *= -1;
+                    //previous = current;
                     continue;
                 }
                 else
@@ -84,7 +85,7 @@ int main(int argc, char const *argv[])
             }
             previous = current;
         }
-        if (!safe)
+        if (safe)
         {
             std:: cout << line << std::endl;
             total += 1;
